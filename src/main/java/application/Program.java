@@ -3,6 +3,7 @@ package application;
 import entities.Cliente;
 import entities.Divida;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -12,58 +13,89 @@ public class Program {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
-        Cliente c1 = new Cliente("Maria", "99999-9999");
+        ArrayList<Divida> dividas = new ArrayList<>();
 
-        Divida d1 = new Divida(c1, 50.0, "19/03/2026");
+        int opcao;
 
-        System.out.println("Cliente: " + d1.getCliente().getNome());
-        System.out.println("Valor: " + d1.getValor());
-        System.out.println("Pago: " + d1.isPago());
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1 - Registrar dívida");
+            System.out.println("2 - Listar dívidas");
+            System.out.println("3 - Marcar como pago ");
+            System.out.println("4 - Sair");
+            System.out.print("Escolha: ");
+            opcao = sc.nextInt();
+            sc.nextLine();
 
+            switch (opcao) {
 
+                case 1 :
+                    System.out.print("Nome: ");
+                    String nome = sc.nextLine();
 
+                    System.out.print("Telefone: ");
+                    String telefone = sc.nextLine();
 
+                    Cliente cliente = new Cliente(nome, telefone);
 
+                    System.out.print("Valor: ");
+                    double valor = sc.nextDouble();
 
+                    sc.nextLine();
 
+                    System.out.print("Data: ");
+                    String data = sc.nextLine();
 
+                    Divida divida = new Divida(cliente, valor, data);
+                    dividas.add(divida);
 
-        /*System.out.println("Sistema de controle de notas");
+                    System.out.println("Dívida registrada!");
+                    break;
 
-        System.out.println("1 - Cadastrar cliente\n" +
-                "2 - Registrar dívida\n" +
-                "3 - Listar dívidas\n" +
-                "4 - Marcar como pago\n" +
-                "5 - Sair");
+                case 2:
+                    System.out.println("\n===== LISTA DÍVIDAS =====");
 
-        System.out.print("Escolha uma opção: ");
-        int opc = sc.nextInt();
+                    for (Divida d : dividas) {
+                        System.out.println("Nome: " + d.getCliente().getNome());
+                        System.out.println("Telefone: " + d.getCliente().getTelefone());
+                        System.out.println("Valor: " + d.getValor());
+                        System.out.println("Data: " + d.getData());
+                        if (d.isPago()){
+                            System.out.println("Status: pago");
+                        }else {
+                            System.out.println("Status: pendente");
+                        }
+                        System.out.println("----------------------");
+                    }
+                    break;
 
-        switch (opc) {
-            case 1 :
-                System.out.println("Cadastrar cliente");
-                break;
+                case 3 :
+                    System.out.println("\n===== PAGO =====");
 
-            case 2 :
-                System.out.println("Registrar dívida");
-                break;
+                    System.out.print("Informa nome: ");
+                    String nomeBusca = sc.nextLine();
 
-            case 3 :
-                System.out.println("Listar dívidas");
-                break;
+                    System.out.print("Informa telefone: ");
+                    String telefoneBusca = sc.nextLine();
 
-            case 4 :
-                System.out.println("Marcar como pago");
-                break;
+                    boolean encontrado = false;
 
-            case 5 :
-                System.out.println("Sair");
-                break;
+                    for (Divida divida1 : dividas) {
+                        if (divida1.getCliente().getNome().equals(nomeBusca) && divida1.getCliente().getTelefone().equals(telefoneBusca)) {
+                            divida1.setPago(true);
+                            encontrado = true;
+                            System.out.println("Dívida marcada como paga");
+                            break;
+                        }
+                    }
 
-            default:
-                System.out.println("Opção inválida");
-        }*/
+                    if (!encontrado) {
+                        System.out.println("Dívida não encontrada");
+                    }
 
+            }
+
+        } while (opcao != 4);
 
         sc.close();
 
