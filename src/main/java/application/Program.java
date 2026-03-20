@@ -29,7 +29,7 @@ public class Program {
 
             switch (opcao) {
 
-                case 1 :
+                case 1:
                     System.out.print("Nome: ");
                     String nome = sc.nextLine();
 
@@ -55,21 +55,25 @@ public class Program {
                 case 2:
                     System.out.println("\n===== LISTA DÍVIDAS =====");
 
+                    double somaDivida = 0;
+
                     for (Divida d : dividas) {
                         System.out.println("Nome: " + d.getCliente().getNome());
                         System.out.println("Telefone: " + d.getCliente().getTelefone());
-                        System.out.println("Valor: " + d.getValor());
-                        System.out.println("Data: " + d.getData());
+                        System.out.printf("Valor: %.2f" , d.getValor());
+                        System.out.println("\nData: " + d.getData());
                         if (d.isPago()){
                             System.out.println("Status: pago");
                         }else {
                             System.out.println("Status: pendente");
+                            somaDivida = somaDivida + d.getValor();
                         }
                         System.out.println("----------------------");
                     }
+                    System.out.printf("\nTotal de dívidas em aberto: R$ %.2f\n" , somaDivida);
                     break;
 
-                case 3 :
+                case 3:
                     System.out.println("\n===== PAGO =====");
 
                     System.out.print("Informa nome: ");
@@ -95,7 +99,7 @@ public class Program {
 
             }
 
-        } while (opcao != 4);
+        } while (opcao != 5);
 
         sc.close();
 
