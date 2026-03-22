@@ -3,6 +3,7 @@ package entities;
 public class Divida {
 
     private Cliente cliente;
+    private String descricao;
     private double valor;
     private String data;
     private boolean pago;
@@ -10,15 +11,17 @@ public class Divida {
     public Divida() {
     }
 
-    public Divida(Cliente cliente, double valor, String data) {
+    public Divida(Cliente cliente, String descricao, double valor, String data) {
         this.cliente = cliente;
+        this.descricao = descricao;
         this.valor = valor;
         this.data = data;
         this.pago = false;
     }
 
-    public Divida(Cliente cliente, double valor, String data, boolean pago) {
+    public Divida(Cliente cliente, String descricao, double valor, String data, boolean pago) {
         this.cliente = cliente;
+        this.descricao = descricao;
         this.valor = valor;
         this.data = data;
         this.pago = false;
@@ -30,6 +33,14 @@ public class Divida {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public double getValor() {

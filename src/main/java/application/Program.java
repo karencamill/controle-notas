@@ -38,6 +38,9 @@ public class Program {
 
                     Cliente cliente = new Cliente(nome, telefone);
 
+                    System.out.print("Descrição: ");
+                    String descricao = sc.nextLine();
+
                     System.out.print("Valor: ");
                     double valor = sc.nextDouble();
 
@@ -46,7 +49,7 @@ public class Program {
                     System.out.print("Data: ");
                     String data = sc.nextLine();
 
-                    Divida divida = new Divida(cliente, valor, data);
+                    Divida divida = new Divida(cliente, descricao, valor, data);
                     dividas.add(divida);
 
                     System.out.println("Dívida registrada!");
@@ -60,6 +63,7 @@ public class Program {
                     for (Divida d : dividas) {
                         System.out.println("Nome: " + d.getCliente().getNome());
                         System.out.println("Telefone: " + d.getCliente().getTelefone());
+                        System.out.println("Descrição: " + d.getDescricao());
                         System.out.printf("Valor: %.2f" , d.getValor());
                         System.out.println("\nData: " + d.getData());
                         if (d.isPago()){
@@ -96,7 +100,6 @@ public class Program {
                     if (!encontrado) {
                         System.out.println("Dívida não encontrada");
                     }
-
             }
 
         } while (opcao != 5);
