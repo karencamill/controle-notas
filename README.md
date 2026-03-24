@@ -39,7 +39,9 @@ src/
  │    └── Program.java
  └── entities/
       ├── Cliente.java
-      └── Divida.java
+      ├── Divida.java
+      └── enums/
+           └── StatusDivida.java
 ```
 
 ---
