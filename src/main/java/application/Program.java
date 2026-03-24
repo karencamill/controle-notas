@@ -2,6 +2,7 @@ package application;
 
 import entities.Cliente;
 import entities.Divida;
+import entities.enums.StatusDivida;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -22,7 +23,7 @@ public class Program {
             System.out.println("1 - Registrar dívida");
             System.out.println("2 - Listar dívidas");
             System.out.println("3 - Marcar como pago ");
-            System.out.println("4 - Sair");
+            System.out.println("0 - Sair");
             System.out.print("Escolha: ");
             opcao = sc.nextInt();
             sc.nextLine();
@@ -66,10 +67,10 @@ public class Program {
                         System.out.println("Descrição: " + d.getDescricao());
                         System.out.printf("Valor: %.2f" , d.getValor());
                         System.out.println("\nData: " + d.getData());
-                        if (d.isPago()){
-                            System.out.println("Status: pago");
+                        if (d.getStatus() == StatusDivida.PAGO){
+                            System.out.println("Status: " + d.getStatus());
                         }else {
-                            System.out.println("Status: pendente");
+                            System.out.println("Status: " + d.getStatus());
                             somaDivida = somaDivida + d.getValor();
                         }
                         System.out.println("----------------------");
@@ -90,7 +91,7 @@ public class Program {
 
                     for (Divida divida1 : dividas) {
                         if (divida1.getCliente().getNome().equals(nomeBusca) && divida1.getCliente().getTelefone().equals(telefoneBusca)) {
-                            divida1.setPago(true);
+                            divida1.setStatus(StatusDivida.PAGO);
                             encontrado = true;
                             System.out.println("Dívida marcada como paga");
                             break;
@@ -102,7 +103,7 @@ public class Program {
                     }
             }
 
-        } while (opcao != 5);
+        } while (opcao != 0);
 
         sc.close();
 

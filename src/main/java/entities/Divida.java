@@ -1,12 +1,15 @@
 package entities;
 
+import entities.enums.StatusDivida;
+
 public class Divida {
 
     private Cliente cliente;
     private String descricao;
     private double valor;
     private String data;
-    private boolean pago;
+    private StatusDivida status;
+
 
     public Divida() {
     }
@@ -16,15 +19,7 @@ public class Divida {
         this.descricao = descricao;
         this.valor = valor;
         this.data = data;
-        this.pago = false;
-    }
-
-    public Divida(Cliente cliente, String descricao, double valor, String data, boolean pago) {
-        this.cliente = cliente;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.data = data;
-        this.pago = false;
+        this.status = StatusDivida.PENDENTE;
     }
 
     public Cliente getCliente() {
@@ -59,11 +54,11 @@ public class Divida {
         this.data = data;
     }
 
-    public boolean isPago() {
-        return pago;
+    public StatusDivida getStatus() {
+        return status;
     }
 
-    public void setPago(boolean pago) {
-        this.pago = pago;
+    public void setStatus(StatusDivida status) {
+        this.status = status;
     }
 }
